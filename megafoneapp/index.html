@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <!-- <meta name="author" content=""> quem fez a aplicacao -->
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link rel="stylesheet" href="icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+ 
+  <style>
+   .scroll{
+    color:#fff;
+    margin-top:100px;
+}
+
+#toTopBtn {
+     position: fixed;
+    bottom: 40px;
+    right: 20px;
+    z-index: 98;
+    padding: 21px;
+    background-color: #343a40;
+;
+    display: none;
+}
+
+.js .cd-top--fade-out {
+    opacity: .5;
+}
+
+.js .cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.js .cd-top {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s,visibility .3s,background-color .3s;
+}
+
+.cd-top {
+    position: fixed;
+    bottom: 20px;
+    bottom: var(--cd-back-to-top-margin);
+    right: 20px;
+    right: var(--cd-back-to-top-margin);
+    display: inline-block;
+    height: 40px;
+    height: var(--cd-back-to-top-size);
+    width: 40px;
+    width: var(--cd-back-to-top-size);
+    box-shadow: 0 0 10px rgba(0,0,0,.05) !important;
+    background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1571057658/cd-top-arrow.svg) no-repeat center 50%;
+    background-color: #343a40;
+    background-color: hsla(var(--cd-color-3-h),var(--cd-color-3-s),var(--cd-color-3-l),0.8);
+    border-radius: 50px;
+}
+
+.height{
+    height:3000px;
+}
+
+
+
+  
+  </style>
+
+</head>
+
+<body>
+<!-- inicio Modal  LOGIN-->
+ 
+<div class="modal fade" id="enviaLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="usuariologin" placeholder="usuario" required>
+              </div>
+              <div class="form-group" >
+                <div class="input-group">
+                   <input type="password" class="form-control" id="senhalogin" placeholder="senha" required >
+                   <div class="input-group-append">
+                     <button type='button' class='btn btn-primary btn-sm versenha'>  <i class="bi bi-eye"></i> </button>
+                    </div>
+                 </div>
+               </div>
+              <div class="form-group">
+                <div id="respostalogin"></div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="realizalogin">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (/)final do modal LOGIN -->
+
+
+<!-- inicio Modal  Cadastra Usuario-->
+ 
+<div class="modal fade" id="enviaUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Novo Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="usuario" placeholder="usuario" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="email" required>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+                  <div class="input-group-append">
+                    <button type='button' class='btn btn-primary btn-sm versenhausuario'>  <i class="bi bi-eye"></i> </button>
+                   </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="Confirmar senha" id="confirmasenha" required>
+                  <div class="input-group-append">
+                    <button type='button' class='btn btn-primary btn-sm confirmarsenhausuario'>  <i class="bi bi-eye"></i> </button>
+                   </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div id="respostausuario"></div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="cadastrausuario">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (/)final do modal Cadastra Usuario -->
+
+<!-- inicio Modal Evia Frase-->
+ <div class="modal fade" id="enviaFrase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Envia Frase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="autor" placeholder="Autor">
+              </div>
+              <div class="form-group">
+                <textarea  id="frase" placeholder="Frase" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <div id="respostafrase"></div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="cadastrafrase">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (/)final do modal Envia Frase -->
+
+<!-- inicio Modal Busca-->
+<div class="modal fade" id="enviaBusca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Busca</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="busca" placeholder="Busca">
+              </div>
+              <div class="form-group">
+                <div id="respostabusca"></div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="realizabusca">Buscar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (/)final do modal Busca-->
+
+
+<!-- inicio modal sair -->
+
+<div class="modal fade" id="enviaLogoff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group bg-modaltext">
+            Você Deseja sair do app?
+          </div>
+          <div class="form-group">
+            <div id="respostalogoff"></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="realizalogoff">Sair</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- final modal sair -->
+
+
+<!-- inicio Modal ALTERA Frase-->
+<div class="modal fade" id="alteraFrase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-modaltext" id="exampleModalLabel">Alterar Frase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="autoraltera" placeholder="Autor">
+              </div>
+              <div class="form-group">
+                <textarea  id="frasealtera" placeholder="Frase" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="hidden" id="idfrasealtera">
+                <div id="respostaalterafrase"></div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="alterarfrase">Alterar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (/)final do modal ALTERA Frase -->
+
+
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+       <i class="bi bi-megaphone text-dark bg-text "></i>
+        <button type="button" class="close text-dark " id="menu-toggle-p" aria-label="Close">
+          <!-- <span aria-hidden="true">&times;</span>  versao x(&times)-->
+          <i class="bi bi-arrow-left-square bg-text"></i>
+        </button>
+      
+      </div>
+
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-toggle="modal" data-target="#enviaUsuario" id="cadastrar">Cadastro</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-toggle="modal" data-target="#enviaFrase" id="enviar">Enviar Frase</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" id="emalta">Em Alta</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" id="embaixa">Em Baixa</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" id="polemica">Polemica</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" id="minhasfrases">Minhas Frases</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" data-toggle="modal" data-target="#enviaLogoff" id="sair">Sair</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <!-- inicio navegacao menu topo -->
+      <!-- Image and text -->
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand bg-text" href="#">
+          <i class="bi bi-megaphone "></i>
+           &#xa1;Megafone!
+        </a>
+        <!--  inicio botao para alterar o tema  -->
+            <div class="custom-control custom-switch">
+           <input type="checkbox" class="custom-control-input" id="darkSwitch">
+           <label class="custom-control-label" for="darkSwitch"></label>
+          </div>
+        
+        <!--  final botao para alterar o tema -->
+        <button class="btn btn-dark" id="menu-toggle">
+          <i class="bi bi-plus-square"></i>
+        </button>
+
+      </nav>
+     
+      <!-- final navegacao menu top -->
+      
+       <!-- inicio navegacao footer -->
+       <div class="container fixed-bottom  bg-white">
+        <div class="row">
+          <div class="col text-center">
+            <a href="index.html" class="btn bg-text">
+               <i class="bi bi-house-door"></i>
+            </a>
+           
+          </div>
+          <div class="col text-center">
+            <a href="#" class="btn bg-text" data-toggle="modal" data-target="#enviaBusca">
+              <i class="bi bi-search"></i>
+           </a>
+          </div>
+          <div class="col text-center">
+            <a href="#" class="btn bg-text" data-toggle="modal" data-target="#enviaLogin">
+              <i class="bi bi-person"></i>
+           </a>
+          </div>
+        </div>
+      </div>
+       <!-- menu que fica no bottom e com os tres risquinhos <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom fixed-bottom">
+       
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav> -->
+      <!-- final navegacao  footer -->
+
+      <div class="container-fluid mb-5 conteudo">
+
+        <div class="container-fluid cabecalho">
+          <h1 class="mt-4 h4">Tem algo dizer ?</h1>
+          <p>O &#xa1;Megafone! foi criado para você</p>
+          <p>Se você concorda com alguem, clique no botão <code>#concordo!</code>, mas se você discorda, não tem problema , apenas clique no botão<code>#discordo!</code>.O mais importante é o debate!</p>
+        </div>
+        <div class="container frases">
+         
+        </div>
+        
+      </div>
+
+   </div>
+    <!-- /#page-content-wrapper -->
+
+    <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true"></a>
+    
+
+  </div>
+  <!-- /#wrapper -->
+ 
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/dark-mode-switch.js"></script>
+  <script src="vendor/jquery/dark-mode-switch.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    //botao que volta
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    //seta de voltar
+    $("#menu-toggle-p").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+<!--  final Menu Toggle Script -->
+
+  <script>
+    $(document).ready(function(){
+
+      // inicio controlando botoes a partir da autenticacao do usuario
+      var armazenamento = window.sessionStorage;
+      if (armazenamento.getItem('usuarioCon') !==null) {
+        $('#cadastrar').hide();
+        $('#enviar').show();
+        $('#sair').show();
+        $('#minhasfrases').show();
+      }
+      else
+      {
+        $('#cadastrar').show();
+        $('#enviar').hide();
+        $('#sair').hide();
+        $('#minhasfrases').hide();
+      }
+      //realizando o logoff do user , com modal
+      $('#realizalogoff').click(function(){
+        armazenamento.removeItem('usuarioCon');//falndo para sair da sessao logada
+          $('#respostalogoff').html("<div class='alert alert-dark' role='alert'>Logoff realizado com sucesso!!!</div>");
+        // $('#respostalogoff').text('Logoff realizado com sucesso!!!');
+        setTimeout(function(){
+                $('#enviaLogoff').modal('hide');
+              },2000);
+              $('#enviaLogoff').on('hidden.bs.modal',function(){
+                $(this).find('form').trigger('reset');
+                $(this).find('#respostalogoff').html('');
+                location.reload();
+              })
+
+        // location.reload();
+      })
+     // final controlando botoes a partir da autenticacao do usuario
+
+
+
+
+       //Enviando dados para login -login - fazendo rotina de login
+       var urlLogin = "http://localhost/megafonews/login.php";
+      $('#realizalogin').click(function(){
+        var usuariologin = $('#usuariologin').val();
+        var senhalogin = $('#senhalogin').val();
+        if (usuariologin == '' || senhalogin == '') {
+          alert('Informe usuario e senha');
+        }
+        else
+        {
+           $.ajax({
+          type:"POST",
+          dataType: "json",
+          url:urlLogin,
+          data: {
+            "login":"login",
+            "usuariologin": usuariologin,
+             "senhalogin":senhalogin
+          },
+          success:function(resposta){
+            if (resposta !== 'Falha na realização do login') {
+              $.each(resposta,function(i,campo){
+                var id_usuarioCon = campo.id_usuario;
+                var usuarioCon = campo.usuario;
+                var emailCon = campo.email;
+                 // $('#respostalogin').html("Ola" + resposta + ", boas vindas!");
+                  $('#respostalogin').html("<div class='alert alert-dark' role='alert'>Ola "+ usuarioCon +", boas vindas!</div>");
+                   // localStorage.setItem('usuarioCon',resposta); -deixa os dados da sessao armazenado no navegador
+                  // localStorage.clear(); - executa a limpeza depois do login 
+                  sessionStorage.setItem('id_usuarioCon',id_usuarioCon);
+                  sessionStorage.setItem('usuarioCon',usuarioCon);
+                  sessionStorage.setItem('emailCon',emailCon);
+                 
+              setTimeout(function(){
+                $('#enviaLogin').modal('hide');
+              },2000);
+              $('#enviaLogin').on('hidden.bs.modal',function(){
+                $(this).find('form').trigger('reset');
+                $(this).find('#respostalogin').html('');
+                location.reload();
+              })
+              })
+                   
+                 
+            } else {
+              $('#respostalogin').html(resposta);
+              setTimeout(function(){
+                $('#enviaLogin').modal('hide');
+              },2000);
+              $('#enviaLogin').on('hidden.bs.modal',function(){
+                $(this).find('form').trigger('reset');
+                $(this).find('#respostalogin').html('');
+                
+              })
+            }
+       
+          },
+          //fazendo o uso do call back do erro- que aparece no navegador ex: erro 500
+          error: function(){
+            alert('Erro do sistema, tente novamente mais tarde!');
+          }
+        })
+        }
+       
+       
+      })
+
+      //EXIBINDO A SENHA DO USUARIO COM CLIQUE 
+      $('.versenha').click(function(){
+        var tipo = $('#senhalogin').attr('type');
+        if (tipo == 'password') {
+          $('#senhalogin').attr('type','text');
+        } else {
+          $('#senhalogin').attr('type','password');
+        }
+      })
+
+      //exibindo as frase na viewport 
+      var url = "http://localhost/megafonews/consulta.php";
+      $.getJSON(url,function(resultado){
+        // console.log(resultado);
+        $.each(resultado,function(i,campo){
+          var id_frase = campo.id_frase;
+          var autor = campo.autor;
+          var frase = campo.frase;
+          var concordo = campo.concordo;
+          var discordo = campo.discordo;
+          $(".frases").append("<div class='card mb-3 bg-white '><div class='card-header'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3 bg-white '>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-dark btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-dark btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+
+          // $(".frases").append("<div class='card mb-3'><div class='card-header'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-primary btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-primary btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          
+          
+
+        })
+      })
+
+      //exibindo frases em alta viewport 
+      var urlAlta = "http://localhost/megafonews/emalta.php";
+      $('#emalta').click(function(){
+        $.ajax({
+          type:"POST",
+          url:urlAlta,
+          data: {
+            "emalta":"emalta"
+          },
+          success:function(resposta){
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Frases em &#xa1;Alta!</h1>");
+            $('.frases').empty();
+           $.each(resposta,function(i,campo){
+            var id_frase = campo.id_frase;
+            var autor = campo.autor;
+            var frase = campo.frase;
+            var concordo = campo.concordo;
+            var discordo = campo.discordo;
+            $(".frases").append("<div class='card mb-3 bg-white '><div class='card-header bg-white '>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-dark btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-dark btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          
+
+          })
+          },
+          //fazendo o uso do call back do erro- que aparece no navegador ex: erro 500
+          error: function(){
+            alert('Erro do sistema, tente novamente mais tarde!');
+          }
+        })
+        $("#wrapper").toggleClass("toggled");
+      })
+
+
+      //exibindo frases em baixa viewport 
+      var urlBaixa = "http://localhost/megafonews/embaixa.php";
+      $('#embaixa').click(function(){
+        $.ajax({
+          type:"POST",
+          url:urlBaixa,
+          data: {
+            "embaixa":"embaixa"
+          },
+          success:function(resposta){
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Frases em &#xa1;Baixa!</h1>");
+            $('.frases').empty();
+           $.each(resposta,function(i,campo){
+            var id_frase = campo.id_frase;
+            var autor = campo.autor;
+            var frase = campo.frase;
+            var concordo = campo.concordo;
+            var discordo = campo.discordo;
+            $(".frases").append("<div class='card mb-3 bg-white '><div class='card-header bg-white'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-dark btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-dark btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          
+
+          })
+          },
+          //fazendo o uso do call back do erro- que aparece no navegador ex: erro 500
+          error: function(){
+            alert('Erro do sistema, tente novamente mais tarde!');
+          }
+        })
+        $("#wrapper").toggleClass("toggled");
+      })
+
+      //exibindo frases em polemica viewport 
+      var urlPolemica = "http://localhost/megafonews/polemica.php";
+      $('#polemica').click(function(){
+        $.ajax({
+          type:"POST",
+          url:urlPolemica,
+          data: {
+            "polemica":"polemica"
+          },
+          success:function(resposta){
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Frases &#xa1;Polemica!</h1>");
+            $('.frases').empty();
+           $.each(resposta,function(i,campo){
+            var id_frase = campo.id_frase;
+            var autor = campo.autor;
+            var frase = campo.frase;
+            var concordo = campo.concordo;
+            var discordo = campo.discordo;
+            $(".frases").append("<div class='card mb-3 bg-white '><div class='card-header bg-white '>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-dark btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-dark btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          
+
+          })
+          },
+          //fazendo o uso do call back do erro- que aparece no navegador ex: erro 500
+          error: function(){
+            alert('Erro do sistema, tente novamente mais tarde!');
+          }
+        })
+        $("#wrapper").toggleClass("toggled");
+      })
+
+
+      //exibindo minhas frases viewport 
+      var urlMinhas = "http://localhost/megafonews/minhasfrases.php";
+      $('#minhasfrases').click(function(){
+        var id_user = sessionStorage.getItem('id_usuarioCon');
+        var user = sessionStorage.getItem('usuarioCon');
+        $.ajax({
+          type:"POST",
+          url:urlMinhas,
+          data: {
+            "minhasfrases":"minhasfrases",
+            "id_user":id_user
+          },
+          success:function(resposta){
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Minhas Frases!</h1>");
+            $('.frases').empty();
+           $.each(resposta,function(i,campo){
+            var id_frase = campo.id_frase;
+            var autor = campo.autor;
+            var frase = campo.frase;
+            var concordo = campo.concordo;
+            var discordo = campo.discordo;
+            // $(".frases").append("<div class='card mb-3'><div class='card-header'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-primary btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-primary btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          
+           
+            // $(".frases").append("<div class='card mb-3'><div class='card-header'>Frase: <a href='http://localhost/megafonews/excluirfrase.php'>Excluir</a></div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-primary btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-primary btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+
+            //troca dos botoes de curtir e descurtir por excluir e alterar
+            $(".frases").append("<div class='card mb-3 bg-white' id='fraseusuario"+id_frase+"'><div class='card-header bg-white'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p id='fraseenviada"+id_frase+"'>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite id='autorfrase"+id_frase+"'>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-dark btn-sm alterar' data-toggle='modal' data-target='#alteraFrase' value='"+ id_frase+"'>  <i class='bi bi-pencil'id='alterar'"+id_frase+"'></i> alterar </button> <button type='button' class='btn btn-dark btn-sm excluir'  value='"+ id_frase+"'><i class='bi bi-trash3'id='excluir"+id_frase+"'></i> excluir</button></div></div><div id='respostaexclui"+id_frase+"'></div>");
+          })
+          },
+          //fazendo o uso do call back do erro- que aparece no navegador ex: erro 500
+          error: function(){
+            alert('Erro do sistema, tente novamente mais tarde!');
+          }
+        })
+        $("#wrapper").toggleClass("toggled");
+      })
+
+       //exibindo busca viewport 
+       var urlBusca = "http://localhost/megafonews/busca.php";
+      $('#realizabusca').click(function(){
+        var busca = $('#busca').val();
+        if(busca ==''){
+          alert('Informe o criterio de busca!');
+        }else
+        {
+             $.ajax({
+          type:"POST",
+          url:urlBusca,
+          data: {
+            "realizabusca":"realizabusca",
+            "busca":busca
+          },
+          success:function(resposta){
+            if (resposta != '') {
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Resultado da Busca:</h1>");
+            $('.frases').empty();
+           $.each(resposta,function(i,campo){
+            var id_frase = campo.id_frase;
+            var autor = campo.autor;
+            var frase = campo.frase;
+            var concordo = campo.concordo;
+            var discordo = campo.discordo;
+            $(".frases").append("<div class='card mb-3 bg-white'><div class='card-header bg-white'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>"+ frase +"</p> <footer class='blockquote-footer mb-3'>Autor:<cite>"+ autor +"</cite></footer></blockquote><button type='button' class='btn btn-primary btn-sm concordo' value='"+ id_frase+"'>#concordo! <span class='badge badge-light' id='concordo"+id_frase+"'>"+ concordo+"</span></button> <button type='button' class='btn btn-primary btn-sm discordo' value='"+ id_frase+"'>#discordo! <span class='badge badge-light' id='discordo"+id_frase+"'>"+ discordo+"</span></button></div></div>");
+          })
+
+          setTimeout(function(){
+             $('#enviaBusca').modal('hide');
+           },500);
+           $('#enviaBusca').on('hidden.bs.modal',function(){
+             $(this).find('form').trigger('reset');
+           })
+            }else{
+            $('.cabecalho').empty();
+            $('.cabecalho').append("<h1 class='mt-4 h4'> Resultado da Busca:</h1>");
+            $('.frases').empty();
+            $(".frases").append("<div class='card mb-3'><div class='card-header'>Frase:</div><div class='card-body'><blockquote class='blockquote mb-0'><p>Infelizmente não temos conhecimento de nenhuma frase com seu criterio de busca</p> <footer class='blockquote-footer mb-3'>Autor:<cite>Megafone!</cite></footer></blockquote></div></div>");
+            setTimeout(function(){
+             $('#enviaBusca').modal('hide');
+           },500);
+           $('#enviaBusca').on('hidden.bs.modal',function(){
+             $(this).find('form').trigger('reset');
+           })
+          }
+           
+          }
+        })
+        }
+     
+       
+      })
+
+
+  
+      
+      //enviando dados para cadastro de usuario na viewport 
+      var urlUsuario = "http://localhost/megafonews/insereusuario.php";
+      $('#cadastrausuario').click(function(){
+        var usuario = $('#usuario').val();
+        var email = $('#email').val();
+        var senha = $('#senha').val();
+        var confirmasenha = $('#confirmasenha').val();
+        if (usuario == ''||email == ''||senha == ''||confirmasenha=='') {
+          alert('Informe um email, usuario ou senha');
+        }
+         if (senha == confirmasenha) {
+           $.ajax({
+          type:"POST",
+          url:urlUsuario,
+          data: {
+            "insereusuario":"insereusuario",
+            "usuario": usuario,
+            "email":email,
+             "senha":senha
+          },
+          success:function(resposta){
+          //  $('#respostausuario').html("<div class='alert alert-dark' role='alert'>"+resposta+"</div>");
+           $('#respostausuario').html(resposta);
+           setTimeout(function(){
+             $('#enviaUsuario').modal('hide');
+           },2000);
+           $('#enviaUsuario').on('hidden.bs.modal',function(){
+             $(this).find('form').trigger('reset');
+             $(this).find('#respostausuario').html('');
+             $("#wrapper").toggleClass("toggled");
+           })
+          }
+        })
+         }
+        else
+        {
+          alert('Senha e Confirma senha devem ser iguais!');
+          $('#confirmasenha').focus();
+        }
+       
+       
+      })
+
+      //EXIBINDO SENHA e CONFIRMA SENHA DO NOVO USUARIO
+      $('.versenhausuario').click(function(){
+        var tipo = $('#senha').attr('type');
+        if (tipo == 'password') {
+          $('#senha').attr('type','text');
+        } else {
+          $('#senha').attr('type','password');
+        }
+      })
+
+      $('.confirmarsenhausuario').click(function(){
+        var tipo = $('#confirmasenha').attr('type');
+        if (tipo == 'password'){
+          $('#confirmasenha').attr('type','text');
+        } 
+        else {
+          $('#confirmasenha').attr('type','password');
+        }
+      })
+
+        //enviando dados para cadastro de novas frases na viewport 
+        var urlFrase = "http://localhost/megafonews/inserefrase.php";
+      $('#cadastrafrase').click(function(){
+        var autor = $('#autor').val();
+        var frase = $('#frase').val();
+        var id_user = sessionStorage.getItem('id_usuarioCon');
+        if (autor==''|| frase=='') {
+          alert('Informe uma frase ou autor')
+        }
+        else{
+           $.ajax({
+          type:"POST",
+          url:urlFrase,
+          data: {
+            "inserefrase":"inserefrase",
+            "autor": autor,
+            "frase": frase,
+            "id_usuario": id_user
+            
+          },
+          success:function(resposta){
+          //  $('#respostafrase').html("<div class='alert alert-dark' role='alert'>"+resposta+"</div>");
+           $('#respostafrase').html(resposta);
+           setTimeout(function(){
+             $('#enviaFrase').modal('hide');
+           },9000);
+           $('#enviaFrase').on('hidden.bs.modal',function(){
+             $(this).find('form').trigger('reset');
+             $(this).find('#respostafrase').html('');
+             $("#wrapper").toggleClass("toggled");
+             location.reload(); //recarregar a pagina e exibir a frase - window.location.reaload()
+           })
+          }
+        })
+        }
+       
+       
+      })
+
+      //CONCORDO
+        var urlOpinar = "http://localhost/megafonews/opinar.php";
+        //             evento,  a onde  ,  funcao
+      $('.frases').on('click','.concordo', function(){
+        var idFrase = $(this).val();
+        var fraseconcorda = '#concordo' +idFrase;
+        var frasediscorda = '#discordo' +idFrase;
+
+        if ($(frasediscorda).parent().attr('disabled')) {
+          $.ajax({
+          type:"POST",
+          dataType: "json",
+          url:urlOpinar,
+          data: {
+            "concordoalt":"concordoalt",
+            "id_frase": idFrase,
+                        
+          },
+          success:function(resposta){
+            var id_frase = resposta.id_frase;
+            var concordo = resposta.concordo;
+            var discordo = resposta.discordo;
+            $(fraseconcorda).text(concordo);
+            $(frasediscorda).text(discordo);
+            $(fraseconcorda).parent().attr('disabled','disabled');
+            $(frasediscorda).parent().removeAttr('disabled');
+
+          }
+        })
+          
+        } else {
+           $.ajax({
+          type:"POST",
+          url:urlOpinar,
+          data: {
+            "concordo":"concordo",
+            "id_frase": idFrase,
+                        
+          },
+          success:function(resposta){
+            $(fraseconcorda).text(resposta);
+            $(fraseconcorda).parent().attr('disabled','disabled');
+
+          }
+        })
+        }
+         
+      })
+
+
+
+
+      //DISCORDO
+       //             evento,  a onde  ,  funcao
+      $('.frases').on('click','.discordo', function(){
+        var idFrase = $(this).val();
+        var fraseconcorda = '#concordo' +idFrase;
+        var frasediscorda = '#discordo' +idFrase;
+
+        if ($(fraseconcorda).parent().attr('disabled')) {
+          $.ajax({
+          type:"POST",
+          dataType: "json",
+          url:urlOpinar,
+          data: {
+            "discordoalt":"discordoalt",
+            "id_frase": idFrase,
+                        
+          },
+          success:function(resposta){
+            var id_frase = resposta.id_frase;
+            var concordo = resposta.concordo;
+            var discordo = resposta.discordo;
+            $(frasediscorda).text(discordo);
+            $(fraseconcorda).text(concordo);
+            $(frasediscorda).parent().attr('disabled','disabled');
+            $(fraseconcorda).parent().removeAttr('disabled');
+
+          }
+          })
+        }
+        else
+        {
+          $.ajax({
+          type:"POST",
+          url:urlOpinar,
+          data: {
+            "discordo":"discordo",
+            "id_frase": idFrase,
+                        
+          },
+          success:function(resposta){
+            $(frasediscorda).text(resposta);
+            $(frasediscorda).parent().attr('disabled','disabled');
+
+          }
+          })
+        }
+         
+        
+         
+      })
+
+      //EXCLUIR MINHAS FRASES(frases do usuario logado) 
+      var urlExcluir = "http://localhost/megafonews/excluirfrase.php";
+      $('.frases').on('click','.excluir',function(){
+        var idFrase = $(this).val();
+        $.ajax({
+          type:"POST",
+          url:urlExcluir,
+          data:{
+            "excluirfrase":"excluirfrase",
+             "id_frase":idFrase
+          },
+          success:function(resposta){  
+             var respostaid = '#respostaexclui'+idFrase; 
+             var cardfrase = '#fraseusuario'+idFrase; 
+             $(respostaid).html(resposta);
+            $(respostaid).fadeOut(2000,function(){
+              $(this).remove();
+              $(cardfrase).fadeOut(2000,function(){
+                $(this).remove();
+              });
+            });
+           
+          }
+        })
+
+      })
+
+      //CARREGANDO DADOS NO MODAL QUANDO CLICADO NO BOTAO ALTERAR
+      $('.frases').on('click','.alterar',function(){
+        var idFrase = $(this).val();
+        var autordafrase = '#autorfrase'+idFrase;
+        var textodafrase =  '#fraseenviada'+idFrase;
+        var autor = $(autordafrase).text();
+        var frase = $(textodafrase).text();
+        $('#autoraltera').val(autor);
+        $('#frasealtera').val(frase);
+        $('#idfrasealtera').val(idFrase);
+        $('#alteraFrase').modal('show');
+      })
+
+
+      //ALTERAR MINHAS FRASES(alterarndo dados da frase logado)
+       var urlAlterar = "http://localhost/megafonews/alterarfrase.php";
+       $('#alterarfrase').click(function(){
+         var autor = $('#autoraltera').val();
+         var frase = $('#frasealtera').val();
+         var id_frase = $('#idfrasealtera').val();
+         if (autor==''|| frase=='') {
+           alert('Informe autor e frase');
+         } else {
+           $.ajax({
+            type:"POST",
+            url: urlAlterar,
+            data: {
+              "alterafrase":"alterafrase",
+              "autor":autor,
+              "frase":frase,
+              "id_frase":id_frase
+            },
+            success:function(resposta){
+              $('#respostaalterafrase').html(resposta);
+              setTimeout(function(){
+                $('#alteraFrase').modal('hide');
+              },2000);
+              $('#alteraFrase').on('hidden.bs.modal',function(){
+                $(this).find('form').trigger('reset');
+                $(this).find('#respostaalterafrase').html('');
+                location.reload();
+              })
+            },
+
+          })
+           
+         }
+       })
+
+    //INICIO DO BOTAO VOLTAR AO TOPO
+        $(document).ready(function() {
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 20) {
+          $('#toTopBtn').fadeIn();
+        } else {
+          $('#toTopBtn').fadeOut();
+        }
+      });
+
+      $('#toTopBtn').click(function() {
+        $("html, body").animate({
+          scrollTop: 0
+        }, 1000);
+        return false;
+      });
+    });
+ //final DO BOTAO VOLTAR AO TOPO
+
+
+
+ 
+
+
+})
+  </script>
+ 
+
+ 
+
+
+
+
+</body>
+
+</html>
