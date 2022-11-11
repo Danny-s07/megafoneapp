@@ -31,7 +31,7 @@ Esse projeto de base de estudos foi criado durante o meu curso de tecnico em inf
 5. Pronto feito todos os passos acima agora é só testar .... Sair logando e cadastrando suas frases .
 
 
-### Telas do Projetos
+### Telas e Video do Projetos 
 O projeto feito consiste em ter varias frases postadas por pessoas com cadastro no app porem qualquer pessoa logada ou não pode curtir as frases.
 
 #### Tela Inicial - Sem modo Noturno
